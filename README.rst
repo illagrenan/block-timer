@@ -1,6 +1,6 @@
-=================
-Block Timer: TODO
-=================
+=======================================================
+Block Timer: Measure execution time of your code blocks
+=======================================================
 
 .. image:: https://badge.fury.io/py/block-timer.svg
         :target: https://pypi.python.org/pypi/block-timer
@@ -29,18 +29,33 @@ Block Timer: TODO
 Introduction
 ------------
 
-TODO
+You can easily measure blocks of code using ``Timer`` class as context manager or as method/function decorator:
+
+.. code:: python
+
+    from block_timer.timer import Timer
+
+    with Timer() as t:
+        pass # Some long running operation
+
+    # Total time ... seconds will be printed
+    # or you can use elapsed property:
+    print(t.elapsed)
 
 Installation
 ------------
 
-TODO
+- Supported Python versions are: **only** ``3.5``.
+
+.. code:: shell
+
+    pip install --upgrade block-timer
 
 
-Credits and Resources
----------------------
+Resources
+---------
 
-TODO
+- `time.perf_counter() on Python Doc <https://docs.python.org/3/library/time.html#time.perf_counter>`_
 
 
 License
