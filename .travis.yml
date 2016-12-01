@@ -1,0 +1,15 @@
+language: python
+sudo: false
+python:
+  - 3.5
+install:
+    - pip install --quiet --upgrade -r requirements.txt
+script:
+    - inv test
+    - inv build
+    - inv test_install
+    - inv coverage
+after_success:
+    - coveralls
+notifications:
+    email: false
