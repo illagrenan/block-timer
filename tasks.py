@@ -44,9 +44,9 @@ def coverage():
 @task
 def test_install():
     """try to install built package"""
-    run("pip uninstall django-brotli --yes", warn=True)
-    run("pip install --use-wheel --no-index --find-links=file:./dist django-brotli")
-    run("pip uninstall django-brotli --yes")
+    run("pip uninstall block-timer --yes", warn=True)
+    run("pip install --use-wheel --no-index --find-links=file:./dist block-timer")
+    run("pip uninstall block-timer --yes")
 
 
 @task
