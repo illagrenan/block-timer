@@ -26,22 +26,6 @@ Block Timer: Measure execution time of your code blocks
      :target: https://pyup.io/repos/github/illagrenan/block-timer/
      :alt: Python 3
 
-Introduction
-------------
-
-You can easily measure blocks of code using ``Timer`` class as context manager or as method/function decorator:
-
-.. code:: python
-
-    from block_timer.timer import Timer
-
-    with Timer() as t:
-        pass # Some long running operation
-
-    # Total time ... seconds will be printed
-    # or you can use elapsed property:
-    print(t.elapsed)
-
 Installation
 ------------
 
@@ -51,6 +35,60 @@ Installation
 
     pip install --upgrade block-timer
 
+Usage
+-----
+
+You can easily measure blocks of code using ``Timer`` class as context manager or as method/function decorator with Block Timer:
+
+Elapsed time will be printed using standard ``print`` function:
+
+.. code:: python
+
+    from block_timer.timer import Timer
+
+    with Timer():
+        pass # Some operation
+
+    # Total time ... seconds will be printed
+
+If you have multiple blocks of code, you can set ``title`` attribute:
+
+.. code:: python
+
+    from block_timer.timer import Timer
+
+    with Timer(title="Block A"):
+        pass # Some operation
+
+    # [Block A] Total time ... seconds will be printed
+
+    with Timer(title="Block B"):
+        pass # Some operation
+
+    # [Block B] Total time ... seconds will be printed
+
+Elapsed time (in fractional seconds) can be accessed by ``elapsed`` property:
+
+.. code:: python
+
+    from block_timer.timer import Timer
+
+    with Timer() as t:
+        pass # Some operation
+
+    print("Elapsed time: {:f} seconds".format(t.elapsed))
+
+
+``Timer`` class can be used as a method/function decorator:
+
+.. code:: python
+
+    @Timer(title="Foo")
+    def some_func():
+        time.sleep(1)
+        
+    some_func()
+    # [Foo] Total time ... seconds will be printed
 
 Resources
 ---------
