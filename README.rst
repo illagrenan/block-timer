@@ -2,7 +2,7 @@
 Block Timer: Measure execution time of your code blocks
 =======================================================
 
-.. image:: https://badge.fury.io/py/block-timer.svg
+.. image:: https://img.shields.io/pypi/v/block-timer.svg
         :target: https://pypi.python.org/pypi/block-timer
         :alt: PyPi
 
@@ -10,11 +10,11 @@ Block Timer: Measure execution time of your code blocks
         :target: https://pypi.python.org/pypi/block-timer/
         :alt: MIT
 
-.. image:: https://api.travis-ci.org/illagrenan/block-timer.svg
+.. image:: https://img.shields.io/travis/illagrenan/block-timer.svg
         :target: https://travis-ci.org/illagrenan/block-timer
         :alt: TravisCI
 
-.. image:: https://coveralls.io/repos/github/illagrenan/block-timer/badge.svg?branch=master
+.. image:: https://img.shields.io/coveralls/illagrenan/block-timer.svg
         :target: https://coveralls.io/github/illagrenan/block-timer?branch=master
         :alt: Coverage
 
@@ -22,8 +22,8 @@ Block Timer: Measure execution time of your code blocks
      :target: https://pyup.io/repos/github/illagrenan/block-timer/
      :alt: Updates
 
-.. image:: https://pyup.io/repos/github/illagrenan/block-timer/python-3-shield.svg
-     :target: https://pyup.io/repos/github/illagrenan/block-timer/
+.. image:: https://img.shields.io/pypi/pyversions/block-timer.svg
+     :target: https://pypi.python.org/pypi/block-timer
      :alt: Python 3
 
 Installation
