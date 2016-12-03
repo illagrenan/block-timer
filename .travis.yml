@@ -2,6 +2,8 @@ language: python
 sudo: false
 python:
   - 3.5
+  - "3.6-dev"   # 3.6 development branch
+  - "nightly"   # currently points to 3.7-dev
 install:
     - pip install --quiet --upgrade -r requirements.txt
 script:
