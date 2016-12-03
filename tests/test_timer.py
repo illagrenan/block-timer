@@ -26,6 +26,17 @@ class BasicTestCase(TestCase):
 
         self.assertEqual(float(t), t.elapsed)
 
+    def test_elapsed(self):
+        t = Timer()
+
+        self.assertEqual(0, t.elapsed)
+
+        t.__enter__()
+        time.sleep(1 / 7)
+        t.__exit__()
+
+        self.assertGreater(t.elapsed, 0)  # a > b
+
     def test_multiple_instances(self):
         with Timer(title="Some title") as t1:
             time.sleep(1 / 5)

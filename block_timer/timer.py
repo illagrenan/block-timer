@@ -34,6 +34,7 @@ class Timer(ContextDecorator):
 
     def __init__(self, title: str = ""):
         self._title = title
+        self._elapsed = 0
 
     def __float__(self) -> float:
         return float(self.elapsed)
@@ -52,7 +53,6 @@ class Timer(ContextDecorator):
 
     def __enter__(self) -> 'Timer':
         self.start = time.perf_counter()
-        self._elapsed = 0
 
         return self
 
