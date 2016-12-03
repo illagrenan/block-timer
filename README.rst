@@ -22,9 +22,13 @@ Block Timer: Measure execution time of your code blocks
      :target: https://pyup.io/repos/github/illagrenan/block-timer/
      :alt: Updates
 
-.. image:: https://img.shields.io/pypi/pyversions/block-timer.svg
-     :target: https://pypi.python.org/pypi/block-timer
-     :alt: Python 3
+.. image:: https://img.shields.io/pypi/implementation/block-timer.svg        
+	:target: https://pypi.python.org/pypi/django_brotli/         
+	:alt: Supported Python implementations      
+
+.. image:: https://img.shields.io/pypi/pyversions/block-timer.svg    
+	:target: https://pypi.python.org/pypi/django_brotli/             
+	:alt: Supported Python versions    
 
 Installation
 ------------
