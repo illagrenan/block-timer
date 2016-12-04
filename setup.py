@@ -7,7 +7,7 @@ from setuptools import setup
 
 setup(
     name='block-timer',
-    version='0.1.1',
+    version='0.1.2',
     description="""Measure execution time of your code blocks""",
     long_description=io.open("README.rst", 'r', encoding="utf-8").read(),
     url='https://github.com/illagrenan/block-timer',
