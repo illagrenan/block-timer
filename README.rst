@@ -33,7 +33,7 @@ Block Timer: Measure execution time of your code blocks
 Installation
 ------------
 
-- Supported Python versions are: ``3.5``, ``3.6-dev`` and ``3.7-dev``.
+- Supported Python versions are: ``3.4``, ``3.5``, ``3.6-dev`` and ``3.7-dev``.
 
 .. code:: shell
 
