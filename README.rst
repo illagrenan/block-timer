@@ -22,18 +22,18 @@ Block Timer: Measure execution time of your code blocks
      :target: https://pyup.io/repos/github/illagrenan/block-timer/
      :alt: Updates
 
-.. image:: https://img.shields.io/pypi/implementation/block-timer.svg        
-	:target: https://pypi.python.org/pypi/block-timer/         
-	:alt: Supported Python implementations      
+.. image:: https://img.shields.io/pypi/implementation/block-timer.svg
+	:target: https://pypi.python.org/pypi/block-timer/
+	:alt: Supported Python implementations
 
-.. image:: https://img.shields.io/pypi/pyversions/block-timer.svg    
-	:target: https://pypi.python.org/pypi/block-timer/             
-	:alt: Supported Python versions    
+.. image:: https://img.shields.io/pypi/pyversions/block-timer.svg
+	:target: https://pypi.python.org/pypi/block-timer/
+	:alt: Supported Python versions
 
 Installation
 ------------
 
-- Supported Python versions are: ``3.4``, ``3.5``, ``3.6-dev`` and ``3.7-dev``.
+- Supported Python versions are: ``3.4``, ``3.5``, ``3.6`` and ``3.7-dev``.
 
 .. code:: shell
 
@@ -90,7 +90,7 @@ Elapsed time (in fractional seconds) can be accessed by ``elapsed`` property:
     @Timer(title="Foo")
     def some_func():
         time.sleep(1)
-        
+
     some_func()
     # [Foo] Total time ... seconds will be printed
 
@@ -105,7 +105,7 @@ License
 
 The MIT License (MIT)
 
-Copyright (c) 2016 Vašek Dohnal (@illagrenan)
+Copyright (c) 2016–2017 Vašek Dohnal (@illagrenan)
 
 Permission is hereby granted, free of charge, to any person obtaining a
 copy of this software and associated documentation files (the
