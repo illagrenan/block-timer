@@ -31,8 +31,9 @@ class Timer(ContextDecorator):
     >>> print(t.elapsed)
     """
 
-    def __init__(self, title: str = ""):
+    def __init__(self, title: str = "", print = True):
         self._title = title
+        self._print = print
         self._elapsed = 0
 
     def __float__(self) -> float:
@@ -57,9 +58,9 @@ class Timer(ContextDecorator):
 
     def __exit__(self, *args):
         self._elapsed = time.perf_counter() - self.start
-        title = "[{}] ".format(self._title) if self._title else ""
-
-        print('{title}Total time {total_seconds:.5f} seconds.'.format(title=title, total_seconds=self._elapsed))
+        if self._print:
+            title = "[{}] ".format(self._title) if self._title else ""
+            print('{title}Total time {total_seconds:.5f} seconds.'.format(title=title, total_seconds=self._elapsed))
 
     @property
     def elapsed(self) -> float:
