@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 # ! python3
 
+import sys
 import time
 from contextlib import ContextDecorator
 
@@ -33,7 +34,7 @@ class Timer(ContextDecorator):
 
     def __init__(self, title: str = "", print = True):
         self._title = title
-        self._print = print
+        self._print = sys.stdout if print is True else print
         self._elapsed = 0
 
     def __float__(self) -> float:
@@ -60,7 +61,8 @@ class Timer(ContextDecorator):
         self._elapsed = time.perf_counter() - self.start
         if self._print:
             title = "[{}] ".format(self._title) if self._title else ""
-            print('{title}Total time {total_seconds:.5f} seconds.'.format(title=title, total_seconds=self._elapsed))
+            print('{title}Total time {total_seconds:.5f} seconds.'.format(title=title, total_seconds=self._elapsed),
+                  file=self._print)
 
     @property
     def elapsed(self) -> float:
