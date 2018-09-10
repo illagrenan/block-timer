@@ -45,7 +45,7 @@ def coverage():
 def test_install():
     """try to install built package"""
     run("pip uninstall block-timer --yes", warn=True)
-    run("pip install --use-wheel --no-index --find-links=file:./dist block-timer")
+    run("pip install --no-index --find-links=file:./dist block-timer")
     run("pip uninstall block-timer --yes")
 
 
