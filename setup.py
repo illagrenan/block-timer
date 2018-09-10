@@ -15,8 +15,10 @@ setup(
     author='Vasek Dohnal',
     author_email='vaclav.dohnal@gmail.com',
     packages=['block_timer'],
-    install_requires=[],
-    python_requires='~=3.4', # See: https://www.python.org/dev/peps/pep-0440/#compatible-release
+    install_requires=[
+        'typing; python_version="3.4"'
+    ],
+    python_requires='~=3.4',  # See: https://www.python.org/dev/peps/pep-0440/#compatible-release
     include_package_data=True,
     zip_safe=True,
     classifiers=[
