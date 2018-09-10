@@ -34,7 +34,7 @@ class Timer(ContextDecorator):
 
     def __init__(self, title: str = "", print_title = True):
         self._title = title
-        self._print = sys.stdout if print_title else False
+        self._print = sys.stdout if print_title else print_title
         self._elapsed = 0
 
     def __float__(self) -> float:
