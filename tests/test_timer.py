@@ -48,7 +48,7 @@ class BasicTestCase(TestCase):
 
     def test_stdout(self):
         with io.StringIO() as buffer1, redirect_stdout(buffer1):
-            with Timer(title="Some title"):
+            with Timer(title="Some title", print_file=buffer1):
                 time.sleep(1 / 5)
 
             output1 = buffer1.getvalue()
@@ -56,7 +56,7 @@ class BasicTestCase(TestCase):
         self.assertRegex(output1, re.compile(r"\[Some title\] Total time \d+\.\d+ seconds.\n", re.UNICODE))
 
         with io.StringIO() as buffer2, redirect_stdout(buffer2):
-            with Timer(title="Different title"):
+            with Timer(title="Different title", print_file=buffer2):
                 time.sleep(1 / 5)
 
             output2 = buffer2.getvalue()
