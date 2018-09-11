@@ -33,7 +33,7 @@ class Timer(ContextDecorator):
     >>> print(t.elapsed)
     """
 
-    def __init__(self, title: str = "", print_title: Optional[bool] = True, print_file=sys.stdout):
+    def __init__(self, title: str = "", print_title: Optional[bool] = True, print_file=sys.stderr):
         """
         Instantiate new Timer.
 
