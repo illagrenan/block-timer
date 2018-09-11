@@ -2,14 +2,30 @@
 # ! python3
 
 import shutil
+import warnings
 
-from invoke import run, task
+from invoke import task
+
+PROJECT_NAME = 'block_timer'
 
 
 @task
-def clean():
+def test(ctx):
+    ctx.run("pytest tests/")
+
+
+@task
+def coverage(ctx):
+    """check code coverage quickly with the default Python"""
+    ctx.run("coverage run --source {PROJECT_NAME} -m pytest".format(PROJECT_NAME=PROJECT_NAME))
+    ctx.run("coverage report -m")
+    ctx.run("coverage html")
+
+
+@task
+def clean(ctx):
     """remove build artifacts"""
-    shutil.rmtree('block_timer.egg-info', ignore_errors=True)
+    shutil.rmtree('{PROJECT_NAME}.egg-info'.format(PROJECT_NAME=PROJECT_NAME), ignore_errors=True)
     shutil.rmtree('build', ignore_errors=True)
     shutil.rmtree('dist', ignore_errors=True)
     shutil.rmtree('htmlcov', ignore_errors=True)
@@ -17,57 +33,47 @@ def clean():
 
 
 @task
-def lint():
-    """check style with flake8"""
-    run("flake8 block_timer/ tests/")
+def check(ctx):
+    """Check setup"""
+    ctx.run("python setup.py --no-user-cfg --verbose check --metadata --restructuredtext --strict")
 
 
 @task
-def test():
-    run("py.test --verbose --showlocals tests/")
-
-
-@task
-def check():
-    """run tests quickly with the default Python"""
-    run("python setup.py --no-user-cfg --verbose check --metadata --restructuredtext --strict")
-
-
-@task
-def coverage():
-    """check code coverage quickly with the default Python"""
-    run("coverage run --source block_timer -m py.test")
-    run("coverage report -m")
-    run("coverage html")
-
-
-@task
-def test_install():
+def test_install(ctx):
     """try to install built package"""
-    run("pip uninstall block-timer --yes", warn=True)
-    run("pip install --no-index --find-links=file:./dist block-timer")
-    run("pip uninstall block-timer --yes")
+    ctx.run("pip uninstall {PROJECT_NAME} --yes".format(PROJECT_NAME=PROJECT_NAME), warn=True)
+    ctx.run("pip install --no-cache-dir --no-index --find-links=file:./dist {PROJECT_NAME}".format(PROJECT_NAME=PROJECT_NAME))
+    ctx.run("pip uninstall {PROJECT_NAME} --yes".format(PROJECT_NAME=PROJECT_NAME))
 
 
 @task
-def build():
+def build(ctx):
     """build package"""
-    run("python setup.py build")
-    run("python setup.py sdist")
-    run("python setup.py bdist_wheel")
+    ctx.run("python setup.py build")
+    ctx.run("python setup.py sdist")
+    ctx.run("python setup.py bdist_wheel")
 
 
 @task
-def publish():
+def publish(ctx):
     """publish package"""
-    check()
-    run('python setup.py sdist upload -r pypi')  # Use python setup.py REGISTER
-    run('python setup.py bdist_wheel upload -r pypi')
+    warnings.warn("Deprecated", DeprecationWarning, stacklevel=2)
+
+    check(ctx)
+    ctx.run('python setup.py sdist upload -r pypi')  # Use python setup.py REGISTER
+    ctx.run('python setup.py bdist_wheel upload -r pypi')
 
 
 @task
-def publish_test():
+def publish_twine(ctx):
     """publish package"""
-    check()
-    run('python setup.py sdist upload -r https://testpypi.python.org/pypi')  # Use python setup.py REGISTER
-    run('python setup.py bdist_wheel upload -r https://testpypi.python.org/pypi')
+    check(ctx)
+    ctx.run('twine upload dist/* --skip-existing')
+
+
+@task
+def publish_test(ctx):
+    """publish package"""
+    check(ctx)
+    ctx.run('python setup.py sdist upload -r https://test.pypi.org/legacy/')  # Use python setup.py REGISTER
+    ctx.run('python setup.py bdist_wheel upload -r https://test.pypi.org/legacy/')

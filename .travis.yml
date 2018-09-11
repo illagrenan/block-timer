@@ -16,7 +16,7 @@ install:
 script:
     - inv test
     - inv build
-    - inv test_install
+    - inv test-install
     - inv coverage
 after_success:
     - coveralls
