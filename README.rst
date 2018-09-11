@@ -33,7 +33,7 @@ Block Timer: Measure execution time of your code blocks
 Installation
 ------------
 
-- Supported Python versions are: ``3.4``, ``3.5``, ``3.6`` and ``3.7-dev``.
+- Supported Python versions are: ``3.4``, ``3.5``, ``3.6`` and ``3.7``.
 
 .. code:: shell
 
@@ -71,17 +71,28 @@ If you have multiple blocks of code, you can set ``title`` attribute:
 
     # [Block B] Total time ... seconds will be printed
 
-Elapsed time (in fractional seconds) can be accessed by ``elapsed`` property:
+Elapsed time (in fractional seconds) can be accessed by ``elapsed`` property. You can also disable printing by ``print_title=False``:
 
 .. code:: python
 
     from block_timer.timer import Timer
 
-    with Timer() as t:
+    with Timer(print_title=False) as t:
         pass # Some operation
 
     print("Elapsed time: {:f} seconds".format(t.elapsed))
 
+
+You can redirect output for print function:
+
+.. code:: python
+
+    import sys
+
+    from block_timer.timer import Timer
+
+    with Timer(print_file=sys.stdout):
+        pass # Some operation
 
 ``Timer`` class can be used as a method/function decorator:
 
