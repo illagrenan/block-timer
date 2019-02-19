@@ -33,7 +33,7 @@ class Timer(ContextDecorator):
     >>> print(t.elapsed)
     """
 
-    def __init__(self, title: str = "", print_title: Optional[bool] = True, print_file=sys.stderr):
+    def __init__(self, title: str = "", unit: str = "s", print_title: Optional[bool] = True, print_file=sys.stderr):
         """
         Instantiate new Timer.
 
@@ -41,7 +41,11 @@ class Timer(ContextDecorator):
         :param print_title: Should print elapsed time?
         :param print_file: File that will be passed to print function, see: https://docs.python.org/3/library/functions.html#print
         """
+        if unit not in ['s', 'sec', 'm', 'min', 'h', 'hour']:
+            raise ValueError('Unknown unit: %s' % unit)
+        
         self._title = title
+        self._unit = unit
         self._print_title = print_title
         self._print_file = print_file
         self._elapsed = 0
@@ -68,10 +72,17 @@ class Timer(ContextDecorator):
 
     def __exit__(self, *args):
         self._elapsed = time.perf_counter() - self.start
-
+        
         if self._print_title:
             title = "[{}] ".format(self._title) if self._title else ""
-            formatted_title = '{title}Total time {total_seconds:.5f} seconds.'.format(title=title, total_seconds=self._elapsed)
+            if self._unit in ['s', 'sec']:
+                formatted_title = '{title}Total time {total_seconds:.5f} seconds.'.format(title=title, total_seconds=self._elapsed)
+            elif self._unit in ['m', 'min']:
+                formatted_title = '{title}Total time {total_seconds:.3f} minutes.'.format(title=title, total_seconds=self._elapsed/60.0)
+            elif self._unit in ['h', 'hour']:
+                formatted_title = '{title}Total time {total_seconds:.1f} hours.'.format(title=title, total_seconds=self._elapsed/60.0/60.0)
+            else:
+                raise ValueError('Unknown unit: %s' % self._unit)
             print(formatted_title, file=self._print_file)
 
     @property
